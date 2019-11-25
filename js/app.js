@@ -22,7 +22,7 @@ var images = [
   'water-can',
   'wine-glass'
 ];
-var shownImages = []
+// var shownImages = []
 var attempts = 25;
 var leftImage = document.querySelector('#leftImage');
 var rightImage = document.querySelector('#rightImage');
@@ -43,30 +43,16 @@ for (let i = 0; i < images.length; i++) {
   new Bus(images[i]);
 }
 function render() {
-  // while (leftBus === rightBus || centerBus === leftBus || centerBus === rightBus) {
+
+  while (leftBus === rightBus || centerBus === leftBus || centerBus === rightBus) {
+
     var leftBus = Bus.all[randomNumber(0, Bus.all.length - 1)];
     var centerBus = Bus.all[randomNumber(0, Bus.all.length - 1)];
     var rightBus = Bus.all[randomNumber(0, Bus.all.length - 1)];
-    var show = Bus.all
-//     switch (show) {
-
-//       case leftBus === rightBus || centerBus === leftBus || centerBus === rightBus:
-//         break;
-
-//           case views = 5:
-// break;
-            
-
-//           alert("attempt is " + i++); 
-//           break;
-    
-  
-    
-  
-
-leftBus.views++;
-centerBus.views++;
-rightBus.views++;
+  }
+  leftBus.views++;
+  centerBus.views++;
+  rightBus.views++;
   leftImage.setAttribute('src', leftBus.imagePath);
   leftImage.setAttribute('alt', leftBus.name);
   leftImage.setAttribute('title', leftBus.name);
@@ -78,39 +64,50 @@ rightBus.views++;
   rightImage.setAttribute('title', rightBus.name);
 
 }
-
 render();
 
+sectionImages.addEventListener('click', handleClick);
 function handleClick(e) {
-
-  if (e.target.id !== 'sectionImages') {
-    for (let i = 0; i < Bus.all.length; i++ ){
+  if (e.target.id !== 'sectionImages') {    
+    // if( attempts >25){
+    for (let i = 0; i < Bus.all.length; i++) {
       if (e.target.title === Bus.all[i].name) {
-        Bus.all[i].votes++;
-
+          Bus.all[i].votes++;
+          attempts--;
+          
+      }
+    }          
+          render();
+          attempts--;
+        console.table(Bus.all);
+      // }
     }
-    } 
-  render(); 
-  }
-}
-// imageSection.addEventLitener('click', handleClick);
-sectionImages.addEventListener('click',handleClick);
-function randomNumber(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-
-  function displayImage(){
-
-    var num = Math.floor(Math.random() * (Bus.all));
-    document.canvas.src = images[num];
-  }
-
-  //   shownImages.unshift(images.splice(num,num+1));
-
-  //   if(images.length == 0){
-  //    images = shownImages;
-  //    shownImages = [];
-
-  //    return shownImages[0];
-
+      if (attempts == 0) {
+        
+        sectionImages.removeEventListener('click', handleClick);
+        alert('Only 25 attempt!');
+buslist();
+      }
     }
   
+
+
+
+function buslist() {
+var sectionEl = document.createElement('section');
+sectionImages.appendChild(sectionEl);
+var ulEl = document.createElement('ul');
+for (var i = 0; i < Bus.all.length; i++); {
+
+  var liEl = document.createElement('li');
+  sectionEl.appendChild(ulEl);
+  ulEl.appendChild(liEl);
+  liEl.textContent = `${images[i]} had ${Bus.all[i].votes} number of votes and it appeared ${Bus.all[i].views}`;
+}
+}
+
+function randomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+
