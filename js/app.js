@@ -23,11 +23,12 @@ var images = [
   'wine-glass'
 ];
 // var shownImages = []
-var attempts = 25;
+var attempts = 5;
 var leftImage = document.querySelector('#leftImage');
 var rightImage = document.querySelector('#rightImage');
 var centerImage = document.querySelector('#centerImage');
 var sectionImages = document.querySelector('#sectionImages');
+
 
 
 function Bus(nam) {
@@ -37,7 +38,10 @@ function Bus(nam) {
   this.views = 0;
   Bus.all.push(this);
 }
+
 Bus.all = [];
+// Bus.votes++;
+// console.log(Bus.all.votes)
 
 for (let i = 0; i < images.length; i++) {
   new Bus(images[i]);
@@ -68,43 +72,41 @@ render();
 
 sectionImages.addEventListener('click', handleClick);
 function handleClick(e) {
-  if (e.target.id !== 'sectionImages') {    
-    // if( attempts >25){
-    for (let i = 0; i < Bus.all.length; i++) {
-      if (e.target.title === Bus.all[i].name) {
+  if (e.target.id !== 'sectionImages') {
+    attempts--;
+    if (attempts > 0) {
+      for (let i = 0; i < Bus.all.length; i++) {
+        if (e.target.title === Bus.all[i].name) {
           Bus.all[i].votes++;
-          attempts--;
-          
+        }
       }
-    }          
-          render();
-          attempts--;
-        console.table(Bus.all);
-      // }
-    }
-      if (attempts == 0) {
-        
-        sectionImages.removeEventListener('click', handleClick);
-        alert('Only 25 attempt!');
-buslist();
-      }
-    }
-  
+      render();
 
+      // console.table(Bus.all);
+    } else if (attempts === 0) {
+      sectionImages.removeEventListener('click', handleClick);
+      alert('Only 25 attempt!');
+ 
+
+    }
+  }
+}
+// console.log(Bus.votes)
 
 
 function buslist() {
-var sectionEl = document.createElement('section');
-sectionImages.appendChild(sectionEl);
-var ulEl = document.createElement('ul');
-for (var i = 0; i < Bus.all.length; i++); {
-
-  var liEl = document.createElement('li');
+  var sectionEl = document.getElementById('list');
+  var ulEl = document.createElement('ul');
   sectionEl.appendChild(ulEl);
-  ulEl.appendChild(liEl);
-  liEl.textContent = `${images[i]} had ${Bus.all[i].votes} number of votes and it appeared ${Bus.all[i].views}`;
+  for (var i = 0; i < Bus.all.length; i++); {
+
+    var liEl = document.createElement('li');
+    ulEl.appendChild(liEl);
+    liEl.textContent = `${images[i]} had ${Bus.all[i].votes} number of votes and it appeared ${Bus.all[i].views}`;
+
+  }
 }
-}
+buslist();
 
 function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
