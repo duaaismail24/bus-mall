@@ -11,7 +11,6 @@ var allProductsArray = [];
 var previouslyViewed = [];
 var votesRemaining = 25;
 
-//constructor
 function Product(name) {
   this.name = name;
   this.filepath = `img/${name}.jpg`;
@@ -86,7 +85,6 @@ function renderProduct() {
   while (previouslyViewed.length > 3) {
     previouslyViewed.shift();
   }
-  //assign src, alt and title
   imageOne.alt = allProductsArray[previouslyViewed[0]].name;
   imageTwo.alt = allProductsArray[previouslyViewed[1]].name;
   imageThree.alt = allProductsArray[previouslyViewed[2]].name;
@@ -112,7 +110,6 @@ function renderList() {
   }
 }
 
-//array that holds data
 var votes = [];
 var views = [];
 var names = [];
@@ -178,21 +175,14 @@ function drawChart() {
 
 //              *************** Local storage addition ************
 
-//creating a variable and storing my stringified data
 function createLocalStorage() {
   var stringifiedallProductsArray = JSON.stringify(allProductsArray);
-  //passing stringified data into storage and giving it the key to access to my storage
   localStorage.setItem('productsArrayStorage', stringifiedallProductsArray);
 }
-//function im calling when loading page
 function checkingLocalStorage() {
-  //if local storage has something in it then it's true otherwise it will come as null and cont to else
   if (localStorage.productsArrayStorage) {
-    //declaring a new var to store my storage in and using my key
     var retrieveProducts = localStorage.getItem('productsArrayStorage');
-    //declaring a new var and assigning it to parse my storage data
     var parsedProducts = JSON.parse(retrieveProducts);
-    //im combining my all my storage into the variable that will hold my new data
     allProductsArray = parsedProducts;
     renderProduct();
   } else {
@@ -202,7 +192,6 @@ function checkingLocalStorage() {
 
 //event listener
 imageContainer.addEventListener('click', handleClick);
-//event handler
 function handleClick(event) {
   votesRemaining--;
   console.log(votesRemaining);
@@ -221,3 +210,4 @@ function handleClick(event) {
   renderProduct();
 }
 checkingLocalStorage();
+
