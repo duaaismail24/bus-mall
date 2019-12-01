@@ -1,31 +1,47 @@
-
+@import url('https://fonts.googleapis.com/css?family=Yellowtail&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Patrick+Hand|Yellowtail&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Acme|Bangers&display=swap');
 
 html {
 background-image: url(https://image.winudf.com/v2/image/Y29tLlBSSVNTSS5XYWxscGFwZXIuV2hpdGUuQmFja2dyb3VuZHdoaXRlV2FsbHBhcGVyX3NjcmVlbl8wXzE1MjMwOTM1NDdfMDQ0/screen-0.jpg?h=355&fakeurl=1&type=.jpg);
 background-position: center;
 background-repeat: no-repeat;
-background-size: cover;
-}
+background-size: cover; 
+ }
 
-header {
+h1 {
     font-family: cursive;
-    font-size: 30spx;
+    font-size: 100px;
 text-align: centers;
+margin-top: 50px;
 margin: 100px;
 
 }
-main section img {
+h2 {
+    font-family: cursive;
+    font-size: 50px;
+text-align: centers;
+margin-top: 50px;
+margin: 100px;
+margin-bottom: 50px;
+
+}
+
+body nav img {
     width: 250px;
     margin: 60px;
     margin-left: 150px;
 }
-main section img {
+body nav img {
         border:5px solid #053583;
         background-color:rgb(197, 197, 139);
         padding: 4px;
         width: 200px;
         height: 200px;
-        margin-top: 50px;
+        margin-top: 150px;
+     }
+     img :hover{
+
      }
       body section {
          border-block: 200px;
@@ -35,5 +51,24 @@ main section img {
          margin-top: 50px;
          color: black;
      } 
+      ul {
+         text-align: center;
+         font-family: 'Acme', sans-serif;
+         margin: 450px;
+         margin-top: 50px;
+        }
+        ul {
+            border: solid;
+            width: 400px;
+            border-color: rgb(63, 9, 42);
+
+        }
+   #product-chart {
+       margin: 400px;
+       width: 550px;
+       margin-top: -15pc;
+   }
+       
  
+
 
